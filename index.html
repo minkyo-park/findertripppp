@@ -13,9 +13,8 @@
       <div class="container">
         <header class="header">
           <h1 id="logo" class="logo">
-            <img src="logo.gif" alt="트립닷컴 스캐너" class="logo-image" />
+            <img src="logo.png" alt="트립닷컴 스캐너" class="logo-image" />
           </h1>
-          <p class="subtitle">트립닷컴 접속 국가 파라미터 변경 도우미</p>
           <nav class="header-menu">
             <a href="#" class="menu-item" id="menu-help">사용방법</a>
             <span class="menu-divider"></span>
@@ -199,6 +198,140 @@
               <button class="help-nav-button help-nav-button-primary" id="help-next-button">
                 다음 >
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 할인코드 팝업 -->
+      <div id="discount-modal-overlay" class="discount-modal-overlay" style="display: none;">
+        <div class="discount-modal">
+          <div class="discount-modal-header">
+            <h2>트립닷컴 할인코드</h2>
+            <button class="discount-modal-close" id="discount-modal-close" aria-label="닫기">
+              ×
+            </button>
+          </div>
+          <div class="discount-modal-content">
+            <p class="discount-intro">현재 트립닷컴에서 사용 가능한 할인코드를 제공하는 플랫폼을 알려드릴게요.</p>
+            
+            <div class="discount-tip-box">
+              <div class="discount-tip-icon">💡</div>
+              <div class="discount-tip-content">
+                <div class="discount-tip-title">트립파인더를 통해서 가장 저렴한 국가를 먼저 찾아주세요!</div>
+                <div class="discount-tip-description">최저가를 제공하는 트립닷컴 링크를 찾으셨다면, 최종 예약 단계에서 아래 플랫폼을 통해 할인코드를 적용해보세요.</div>
+              </div>
+            </div>
+            
+            <!-- 로딩 효과 -->
+            <div id="discount-loading" class="discount-loading">
+              <div class="discount-loading-spinner"></div>
+              <p class="discount-loading-text">최신 할인코드를 검색 중...</p>
+            </div>
+            
+            <div id="discount-results" class="discount-results" style="display: none;">
+              <div class="discount-results-header">
+                <span class="discount-results-count">검색 결과 (4)</span>
+              </div>
+              
+              <div class="discount-result-item">
+                <div class="discount-result-left">
+                  <div class="discount-favicon">
+                    <img src="https://www.google.com/s2/favicons?domain=xn--bk1b700b1cz40buif.com&sz=16" alt="쿠폰의달인" />
+                  </div>
+                  <div class="discount-result-info">
+                    <a href="https://xn--bk1b700b1cz40buif.com/dealstore/tripcom/" target="_blank" class="discount-result-title">
+                      쿠폰의달인
+                    </a>
+                    <div class="discount-result-url">xn--bk1b700b1cz40buif.com › dealstore › tripcom</div>
+                    <div class="discount-result-description">
+                      트립닷컴 호텔, 항공권 할인코드 및 프로모션 정보를 제공합니다. 카카오페이, 삼성카드 등 다양한 결제 수단별 할인 혜택을 확인할 수 있습니다.
+                    </div>
+                  </div>
+                </div>
+                <div class="discount-result-right">
+                  <div class="discount-update-bar">
+                    <div class="discount-update-indicator" style="width: 100%;"></div>
+                  </div>
+                  <div class="discount-discount-rate">최대 40%</div>
+                </div>
+              </div>
+
+              <div class="discount-result-item">
+                <div class="discount-result-left">
+                  <div class="discount-favicon">
+                    <img src="https://www.google.com/s2/favicons?domain=travista.co.kr&sz=16" alt="트래비스타" />
+                  </div>
+                  <div class="discount-result-info">
+                    <a href="https://travista.co.kr/trip-deals-promo-code/" target="_blank" class="discount-result-title">
+                      트래비스타
+                    </a>
+                    <div class="discount-result-url">travista.co.kr › trip-deals-promo-code</div>
+                    <div class="discount-result-description">
+                      트립닷컴 할인코드 및 프로모션 정보를 실시간으로 업데이트하여 제공합니다. 호텔, 항공권, 투어 등 다양한 상품에 적용 가능한 할인코드를 확인하세요.
+                    </div>
+                  </div>
+                </div>
+                <div class="discount-result-right">
+                  <div class="discount-update-bar">
+                    <div class="discount-update-indicator" style="width: 75%;"></div>
+                  </div>
+                  <div class="discount-discount-rate">최대 35%</div>
+                </div>
+              </div>
+
+              <div class="discount-result-item">
+                <div class="discount-result-left">
+                  <div class="discount-favicon">
+                    <img src="https://www.google.com/s2/favicons?domain=solar-revival.co.kr&sz=16" alt="솔라쿠폰" />
+                  </div>
+                  <div class="discount-result-info">
+                    <a href="https://solar-revival.co.kr/tripcom" target="_blank" class="discount-result-title">
+                      솔라쿠폰
+                    </a>
+                    <div class="discount-result-url">solar-revival.co.kr › tripcom</div>
+                    <div class="discount-result-description">
+                      트립닷컴 최신 할인코드와 프로모션 정보를 제공합니다. 항공권, 호텔 예약 시 할인 혜택을 받을 수 있는 다양한 쿠폰을 확인하세요.
+                    </div>
+                  </div>
+                </div>
+                <div class="discount-result-right">
+                  <div class="discount-update-bar">
+                    <div class="discount-update-indicator" style="width: 50%;"></div>
+                  </div>
+                  <div class="discount-discount-rate">최대 25%</div>
+                </div>
+              </div>
+
+              <div class="discount-result-item">
+                <div class="discount-result-left">
+                  <div class="discount-favicon">
+                    <img src="https://www.google.com/s2/favicons?domain=tripcoach.net&sz=16" alt="집합소" />
+                  </div>
+                  <div class="discount-result-info">
+                    <a href="https://www.tripcoach.net/tripcom" target="_blank" class="discount-result-title">
+                      집합소
+                    </a>
+                    <div class="discount-result-url">tripcoach.net › tripcom</div>
+                    <div class="discount-result-description">
+                      트립닷컴 할인코드 및 특가 정보를 제공합니다. 여행 예약 시 유용한 할인 혜택과 프로모션 정보를 한눈에 확인할 수 있습니다.
+                    </div>
+                  </div>
+                </div>
+                <div class="discount-result-right">
+                  <div class="discount-update-bar">
+                    <div class="discount-update-indicator" style="width: 25%;"></div>
+                  </div>
+                  <div class="discount-discount-rate">최대 15%</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 할인코드 제보 섹션 -->
+            <div class="discount-report-section">
+              <div class="discount-report-title">혹시 본인만 알고 있는 할인코드가 있다면?</div>
+              <button class="discount-report-button" id="discount-report-button">할인코드 제보하기</button>
+              <div class="discount-report-description">제보 시 추첨을 통해 카카오톡 기프티콘을 보내드립니다!</div>
             </div>
           </div>
         </div>

@@ -150,6 +150,8 @@ const menuContact = document.getElementById('menu-contact');
 const principleButton = document.getElementById('principle-button');
 const principlePopupOverlay = document.getElementById('principle-popup-overlay');
 const principlePopupClose = document.getElementById('principle-popup-close');
+const discountModalOverlay = document.getElementById('discount-modal-overlay');
+const discountModalClose = document.getElementById('discount-modal-close');
 
 // 최근 검색 렌더링
 function renderRecentSearches() {
@@ -554,10 +556,34 @@ menuHelp.addEventListener('click', (e) => {
   showHelpModal();
 });
 
+// 할인코드 모달 표시
+function showDiscountModal() {
+  discountModalOverlay.style.display = 'flex';
+  
+  // 로딩 효과 표시
+  const loadingDiv = document.getElementById('discount-loading');
+  const resultsDiv = document.getElementById('discount-results');
+  
+  loadingDiv.style.display = 'flex';
+  resultsDiv.style.display = 'none';
+  
+  // 2-3초 후 결과 표시 (검색 효과)
+  const loadingTime = 2000 + Math.random() * 1000; // 2-3초 사이 랜덤
+  
+  setTimeout(() => {
+    loadingDiv.style.display = 'none';
+    resultsDiv.style.display = 'block';
+  }, loadingTime);
+}
+
+// 할인코드 모달 숨기기
+function hideDiscountModal() {
+  discountModalOverlay.style.display = 'none';
+}
+
 menuDiscount.addEventListener('click', (e) => {
   e.preventDefault();
-  // 나중에 할인코드 페이지로 이동 예정
-  alert('트립닷컴 할인코드 페이지 준비 중입니다.');
+  showDiscountModal();
 });
 
 menuTips.addEventListener('click', (e) => {
@@ -598,6 +624,25 @@ helpModalOverlay.addEventListener('click', (e) => {
   if (e.target === helpModalOverlay) {
     hideHelpModal();
   }
+});
+
+// 할인코드 모달 닫기 버튼
+discountModalClose.addEventListener('click', () => {
+  hideDiscountModal();
+});
+
+// 할인코드 모달 오버레이 클릭 시 닫기
+discountModalOverlay.addEventListener('click', (e) => {
+  if (e.target === discountModalOverlay) {
+    hideDiscountModal();
+  }
+});
+
+// 할인코드 제보 버튼
+const discountReportButton = document.getElementById('discount-report-button');
+discountReportButton.addEventListener('click', () => {
+  // 나중에 제보 기능 연결 예정
+  alert('할인코드 제보 기능 준비 중입니다.');
 });
 
 // 도움말 모달 네비게이션
