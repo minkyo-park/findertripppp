@@ -503,9 +503,44 @@ recentClear.addEventListener('keydown', (e) => {
   }
 });
 
+// 도움말 모달 단계 관리
+let currentHelpStep = 1;
+const totalHelpSteps = 4;
+
+function updateHelpStep(step) {
+  currentHelpStep = step;
+  
+  // 모든 단계 숨기기
+  document.querySelectorAll('.help-step').forEach((stepEl, index) => {
+    stepEl.classList.remove('active');
+    if (index + 1 === step) {
+      stepEl.classList.add('active');
+    }
+  });
+  
+  // 인디케이터 업데이트
+  document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+    indicator.classList.remove('active');
+    if (index + 1 === step) {
+      indicator.classList.add('active');
+    }
+  });
+  
+  // 페이지 인디케이터 업데이트
+  document.getElementById('help-current-page').textContent = step;
+  
+  // 버튼 상태 업데이트
+  const prevButton = document.getElementById('help-prev-button');
+  const nextButton = document.getElementById('help-next-button');
+  
+  prevButton.disabled = step === 1;
+  nextButton.disabled = step === totalHelpSteps;
+}
+
 // 도움말 모달 표시
 function showHelpModal() {
   helpModalOverlay.style.display = 'flex';
+  updateHelpStep(1); // 첫 단계로 리셋
 }
 
 // 도움말 모달 숨기기
@@ -538,7 +573,7 @@ menuContact.addEventListener('click', (e) => {
   alert('문의하기 기능 준비 중입니다.');
 });
 
-// 트립파인더 원리 팝업
+// 트립닷컴 스캐너 작동방식 팝업
 principleButton.addEventListener('click', () => {
   principlePopupOverlay.style.display = 'flex';
 });
@@ -563,6 +598,30 @@ helpModalOverlay.addEventListener('click', (e) => {
   if (e.target === helpModalOverlay) {
     hideHelpModal();
   }
+});
+
+// 도움말 모달 네비게이션
+const helpPrevButton = document.getElementById('help-prev-button');
+const helpNextButton = document.getElementById('help-next-button');
+
+helpPrevButton.addEventListener('click', () => {
+  if (currentHelpStep > 1) {
+    updateHelpStep(currentHelpStep - 1);
+  }
+});
+
+helpNextButton.addEventListener('click', () => {
+  if (currentHelpStep < totalHelpSteps) {
+    updateHelpStep(currentHelpStep + 1);
+  }
+});
+
+// 단계 인디케이터 클릭 이벤트
+document.querySelectorAll('.step-indicator').forEach((indicator) => {
+  indicator.addEventListener('click', () => {
+    const step = parseInt(indicator.getAttribute('data-step'));
+    updateHelpStep(step);
+  });
 });
 
 // 오류 팝업 오버레이 클릭 시 닫기
