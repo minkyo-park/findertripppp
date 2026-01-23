@@ -1,7 +1,9 @@
 // 국가 플래그 이미지 URL 생성 함수
 function getCountryFlagUrl(code) {
   // flagcdn.com 사용 (무료, 안정적)
-  return `https://flagcdn.com/w40/${code}.png`;
+  // 영국은 'uk' 코드를 사용하지만 flagcdn.com에서는 'gb'를 사용
+  const flagCode = code === 'uk' ? 'gb' : code;
+  return `https://flagcdn.com/w40/${flagCode}.png`;
 }
 
 // 허용된 국가 코드 목록
