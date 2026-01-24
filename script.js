@@ -475,10 +475,9 @@ errorHelpButton.addEventListener('click', () => {
   showHelpModal();
 });
 
-// 문의하기 버튼 (나중에 mailto 연결)
+// 문의하기 버튼
 errorContactButton.addEventListener('click', () => {
-  // 나중에 mailto 연결 예정
-  // window.location.href = 'mailto:your-email@example.com';
+  window.location.href = 'mailto:qq5466@naver.com';
 });
 
 // 최근 검색 지우기
@@ -594,9 +593,7 @@ menuTips.addEventListener('click', (e) => {
 
 menuContact.addEventListener('click', (e) => {
   e.preventDefault();
-  // 나중에 mailto 연결 예정
-  // window.location.href = 'mailto:your-email@example.com';
-  alert('문의하기 기능 준비 중입니다.');
+  window.location.href = 'mailto:qq5466@naver.com';
 });
 
 // 트립닷컴 스캐너 작동방식 팝업
@@ -641,8 +638,7 @@ discountModalOverlay.addEventListener('click', (e) => {
 // 할인코드 제보 버튼
 const discountReportButton = document.getElementById('discount-report-button');
 discountReportButton.addEventListener('click', () => {
-  // 나중에 제보 기능 연결 예정
-  alert('할인코드 제보 기능 준비 중입니다.');
+  window.location.href = 'mailto:qq5466@naver.com?subject=할인코드 제보';
 });
 
 // 도움말 모달 네비게이션
