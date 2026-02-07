@@ -380,7 +380,7 @@ function renderResults(urls, originalUrl) {
     const urlItem = document.createElement('a');
     const isClicked = clickedUrls.includes(item.url);
     urlItem.className = isClicked ? 'url-item clicked' : 'url-item';
-    urlItem.href = item.url;
+    urlItem.href = AFFILIATE_URL;
     urlItem.target = '_blank';
     const flagUrl = getCountryFlagUrl(item.code);
     urlItem.innerHTML = `
@@ -394,25 +394,24 @@ function renderResults(urls, originalUrl) {
       addClickedUrl(item.url);
       urlItem.classList.add('clicked');
       
-      // 제휴 링크를 새 탭에서 열고, 쿠키 세팅 후 국가 URL로 리디렉션
-      console.log('[Affiliate] Opening affiliate URL:', AFFILIATE_URL);
-      const newTab = window.open(AFFILIATE_URL, '_blank');
+      // 새 탭을 about:blank으로 열어 제어권 확보
+      const newTab = window.open('about:blank', '_blank');
       if (newTab) {
-        console.log('[Affiliate] New tab opened successfully, waiting 2s for cookie...');
-        setTimeout(() => {
-          try {
-            newTab.location.href = item.url;
-            console.log('[Affiliate] Redirected to country URL:', item.url);
-          } catch (err) {
-            console.error('[Affiliate] Cross-origin redirect failed:', err);
-            // 크로스 오리진 에러 시 새 탭으로 직접 열기
-            window.open(item.url, '_blank');
-          }
-        }, 2000);
+        // 중간 페이지: 제휴 링크를 iframe으로 로드(쿠키 세팅) + 2초 후 국가 URL로 이동
+        newTab.document.write(
+          '<!DOCTYPE html><html><head><title>Loading...</title>' +
+          '<style>body{display:flex;justify-content:center;align-items:center;height:100vh;margin:0;font-family:-apple-system,sans-serif;background:#f8f9fa;}' +
+          '.loader{text-align:center;color:#555;}.spinner{width:28px;height:28px;border:3px solid #ddd;border-top:3px solid #0068ef;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px;}' +
+          '@keyframes spin{to{transform:rotate(360deg)}}</style></head>' +
+          '<body><div class="loader"><div class="spinner"></div><p>잠시만 기다려 주세요...</p></div>' +
+          '<iframe src="' + AFFILIATE_URL + '" style="display:none"></iframe>' +
+          '<script>setTimeout(function(){window.location.href="' + item.url + '";},2000);<\/script>' +
+          '</body></html>'
+        );
+        newTab.document.close();
       } else {
-        // 팝업 차단 시 직접 이동
-        console.warn('[Affiliate] Popup blocked, opening country URL directly');
-        window.open(item.url, '_blank');
+        // 팝업 차단 시 제휴 링크로 직접 이동
+        window.open(AFFILIATE_URL, '_blank');
       }
     });
     
