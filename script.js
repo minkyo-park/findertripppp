@@ -397,13 +397,13 @@ function renderResults(urls, originalUrl) {
       // 1. 제휴 링크 새 탭으로 열기
       const affiliateTab = window.open(AFFILIATE_URL, '_blank');
       
-      // 2. 2초 후 제휴 탭 닫고, 국가 링크 열기
+      // 2. 1초 후 제휴 탭 닫고, 국가 링크 열기
       setTimeout(() => {
         if (affiliateTab) {
           affiliateTab.close();
         }
         window.open(item.url, '_blank');
-      }, 2000);
+      }, 1000);
     });
     
     urlList.appendChild(urlItem);
