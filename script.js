@@ -395,13 +395,23 @@ function renderResults(urls, originalUrl) {
       urlItem.classList.add('clicked');
       
       // 제휴 링크를 새 탭에서 열고, 쿠키 세팅 후 국가 URL로 리디렉션
+      console.log('[Affiliate] Opening affiliate URL:', AFFILIATE_URL);
       const newTab = window.open(AFFILIATE_URL, '_blank');
       if (newTab) {
+        console.log('[Affiliate] New tab opened successfully, waiting 2s for cookie...');
         setTimeout(() => {
-          newTab.location.replace(item.url);
-        }, 1500);
+          try {
+            newTab.location.href = item.url;
+            console.log('[Affiliate] Redirected to country URL:', item.url);
+          } catch (err) {
+            console.error('[Affiliate] Cross-origin redirect failed:', err);
+            // 크로스 오리진 에러 시 새 탭으로 직접 열기
+            window.open(item.url, '_blank');
+          }
+        }, 2000);
       } else {
         // 팝업 차단 시 직접 이동
+        console.warn('[Affiliate] Popup blocked, opening country URL directly');
         window.open(item.url, '_blank');
       }
     });
