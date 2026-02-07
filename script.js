@@ -1,3 +1,6 @@
+// 제휴 마케팅 링크
+const AFFILIATE_URL = 'http://app.ac/7ACSHu593';
+
 // 국가 플래그 이미지 URL 생성 함수
 function getCountryFlagUrl(code) {
   // flagcdn.com 사용 (무료, 안정적)
@@ -379,18 +382,28 @@ function renderResults(urls, originalUrl) {
     urlItem.className = isClicked ? 'url-item clicked' : 'url-item';
     urlItem.href = item.url;
     urlItem.target = '_blank';
-    urlItem.rel = 'noopener noreferrer';
     const flagUrl = getCountryFlagUrl(item.code);
     urlItem.innerHTML = `
       <img src="${flagUrl}" alt="${escapeHtml(item.name)}" class="country-flag" onerror="this.style.display='none'">
       <span class="country-name">${escapeHtml(item.name)}</span>
     `;
     
-    // 클릭 이벤트 추가
-    urlItem.addEventListener('click', () => {
+    // 클릭 이벤트: 제휴 링크 경유 후 국가 링크로 이동
+    urlItem.addEventListener('click', (e) => {
+      e.preventDefault();
       addClickedUrl(item.url);
-      // 클릭한 항목에 클래스 추가
       urlItem.classList.add('clicked');
+      
+      // 제휴 링크를 새 탭에서 열고, 쿠키 세팅 후 국가 URL로 리디렉션
+      const newTab = window.open(AFFILIATE_URL, '_blank');
+      if (newTab) {
+        setTimeout(() => {
+          newTab.location.replace(item.url);
+        }, 1500);
+      } else {
+        // 팝업 차단 시 직접 이동
+        window.open(item.url, '_blank');
+      }
     });
     
     urlList.appendChild(urlItem);
