@@ -388,7 +388,7 @@ function renderResults(urls, originalUrl) {
       <span class="country-name">${escapeHtml(item.name)}</span>
     `;
     
-    // 클릭 이벤트: 1) 제휴 링크 열기 → 2) 2초 후 닫기 → 3) 국가 링크 열기
+    // 클릭 이벤트: 1) 제휴 링크 열기 → 2) 1초 후 같은 탭에서 국가 링크로 이동
     urlItem.addEventListener('click', (e) => {
       e.preventDefault();
       addClickedUrl(item.url);
@@ -397,13 +397,12 @@ function renderResults(urls, originalUrl) {
       // 1. 제휴 링크 새 탭으로 열기
       const affiliateTab = window.open(AFFILIATE_URL, '_blank');
       
-      // 2. 1초 후 제휴 탭 닫고, 국가 링크 열기
-      setTimeout(() => {
-        if (affiliateTab) {
-          affiliateTab.close();
-        }
-        window.open(item.url, '_blank');
-      }, 1000);
+      // 2. 1초 후 같은 탭에서 국가 링크로 이동
+      if (affiliateTab) {
+        setTimeout(() => {
+          affiliateTab.location.href = item.url;
+        }, 1000);
+      }
     });
     
     urlList.appendChild(urlItem);
