@@ -597,11 +597,7 @@ menuDiscount.addEventListener('click', (e) => {
   showDiscountModal();
 });
 
-menuTips.addEventListener('click', (e) => {
-  e.preventDefault();
-  // 나중에 팁 페이지로 이동 예정
-  alert('알아두면 좋은 팁 페이지 준비 중입니다.');
-});
+// menuTips: 아고다스캐너 외부 링크로 이동 (별도 이벤트 불필요)
 
 menuContact.addEventListener('click', (e) => {
   e.preventDefault();
