@@ -578,8 +578,8 @@ function showDiscountModal() {
   loadingDiv.style.display = 'flex';
   resultsDiv.style.display = 'none';
   
-  // 2-3초 후 결과 표시 (검색 효과)
-  const loadingTime = 2000 + Math.random() * 1000; // 2-3초 사이 랜덤
+  // 0.8-1.2초 후 결과 표시 (검색 효과)
+  const loadingTime = 800 + Math.random() * 400; // 0.8-1.2초 사이 랜덤
   
   setTimeout(() => {
     loadingDiv.style.display = 'none';
