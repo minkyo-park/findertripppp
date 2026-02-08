@@ -236,11 +236,23 @@ body {
   font-weight: 600;
 }
 
+.principle-popup-subtitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0.8rem 0 0.6rem;
+}
+
 .principle-popup-message {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.8;
   margin: 0;
+}
+
+.highlight-underline {
+  background: linear-gradient(to top, rgba(255, 247, 0, 0.6) 40%, transparent 40%);
+  padding: 0 2px;
 }
 
 .input-section {
@@ -763,6 +775,12 @@ body {
   line-height: 1.4;
 }
 
+.help-step-title br,
+.help-step-description br,
+.tip-text br {
+  display: none;
+}
+
 .help-step-description {
   color: #666;
   font-size: 0.95rem;
@@ -1226,6 +1244,12 @@ body {
 
   .help-step-title {
     font-size: 1.1rem;
+  }
+
+  .help-step-title br,
+  .help-step-description br,
+  .tip-text br {
+    display: inline;
   }
 
   .help-step-description {
